@@ -46,13 +46,14 @@ body {
 /* Cards */
 .card {
   background: white;
-  padding: 40px;
-  border-radius: 30px;
-  width: 85%;
-  max-width: 450px;
-  margin: auto;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-  animation: pop 0.4s ease;
+  padding: 32px 28px;
+  border-radius: 28px;
+  width: 92%;
+  max-width: 420px;
+  margin: 40px auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  animation: pop .4s ease;
+  text-align: center;
 }
 
 @keyframes pop {
@@ -150,5 +151,25 @@ body {
   .arrow { width: 40px; height: 40px; }
   .arrow-left { left: 6px; }
   .arrow-right { right: 6px; }
+}
+@media (max-width: 430px) {
+  .card {
+    padding: 40px 24px;
+    border-radius: 30px;
+    margin-top: 70px;
+    margin-bottom: 70px;
+  }
+  h2 {
+    font-size: 1.35rem;
+  }
+  p {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  .btn {
+    padding: 20px 35px;
+    font-size: 1.2rem;
+    border-radius: 18px;
+  }
 }
 
