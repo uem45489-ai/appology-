@@ -1,24 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Our Memory ❤️</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Memories ❤️</title>
+
+  <!-- existing CSS -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- memory-specific small styles are inlined for convenience -->
+  <style>
+    /* Slider container */
+    .slider-wrap {
+      width: 100%;
+      max-width: 520px; /* comfortable desktop/card width */
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .slider-card {
+      background: white;
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .slider-inner {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 66%; /* maintain a tall aspect ratio for phones */
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 12px;
+      background: #f8f6f7;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 420ms ease, transform 420ms ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide.visible {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .caption {
+      margin-top: 16px;
+      font-size: 0.98rem;
+      color: #222;
+      line-height: 1.4;
+      min-height: 3.5em;
+    }
+
+    /* arrows */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      cursor: pointer;
+      user-select: none;
+    }
+    .arrow-left { left: -18px; }
+    .arrow-right { right: -18px; }
+
+    .arrow svg { width: 20px; height: 20px; fill: #ff6f99; }
+
+    /* mobile tweaks */
+    @media (max-width: 420px) {
+      .slider-card { padding: 18px; border-radius: 18px; }
+      .slider-inner { padding-bottom: 80%; }
+      .arrow { width: 40px; height: 40px; }
+      .arrow-left { left: 6px; }
+      .arrow-right { right: 6px; }
+    }
+
+  </style>
+
   <script src="hearts.js" defer></script>
+  <script src="memory.js" defer></script>
 </head>
+<body style="background:#fff2f7;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;">
 
-<body style="background:#fff2f7;padding:20px;min-height:100vh;display:flex;justify-content:center;align-items:center;">
+  <div class="slider-wrap">
+    <div class="slider-card">
+      <h2 style="font-size:1.4rem;margin:0 0 6px 0;">Little moments I keep replaying — Khushi ❤️</h2>
+      <div style="font-size:0.95rem;color:#444;margin-bottom:6px;">
+        Small things, warm feeling — all because of you.
+      </div>
 
-  <div class="card" style="max-width:500px;">
-    <h2>My Favourite Memory With You, Khushi ❤️</h2>
+      <div id="slider" class="slider-inner" aria-live="polite">
+        <!-- slides will be injected by memory.js -->
+      </div>
 
-    <img src="khushi_photo_rotated.jpg" class="photo"/>
+      <div class="caption" id="caption"></div>
 
-    <p style="margin-top:20px;">
-      This moment means so much to me.<br><br>
-      Not because of where we were…<br>
-      but because <strong>I was with you.</strong><br><br>
-      You make every normal day feel warm, soft and happy.
-    </p>
+      <!-- arrows -->
+      <div class="arrow arrow-left" id="prevBtn" title="Previous">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </div>
+
+      <div class="arrow arrow-right" id="nextBtn" title="Next">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+      </div>
+
+    </div>
   </div>
 
 </body>
