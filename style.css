@@ -67,3 +67,88 @@ body {
   margin-top: 20px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
+/* Optional: copy into style.css if you prefer consolidated CSS (these mirror the inline ones) */
+
+.slider-wrap {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.slider-card {
+  background: white;
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+  text-align: center;
+  overflow: hidden;
+}
+
+.slider-inner {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 66%;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 12px;
+  background: #f8f6f7;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 420ms ease, transform 420ms ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide.visible { opacity: 1; }
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.caption {
+  margin-top: 16px;
+  font-size: 0.98rem;
+  color: #222;
+  line-height: 1.4;
+  min-height: 3.5em;
+}
+
+/* arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  cursor: pointer;
+  user-select: none;
+}
+.arrow-left { left: -18px; }
+.arrow-right { right: -18px; }
+
+.arrow svg { width: 20px; height: 20px; fill: #ff6f99; }
+
+@media (max-width: 420px) {
+  .slider-card { padding: 18px; border-radius: 18px; }
+  .slider-inner { padding-bottom: 80%; }
+  .arrow { width: 40px; height: 40px; }
+  .arrow-left { left: 6px; }
+  .arrow-right { right: 6px; }
+}
+
